@@ -1,20 +1,19 @@
 {
     "name": "UDR-2-COPERT",
     "description":"UDR-2-COPERT accepts the output of UDR model and together with more input data creates an XLSX output compatible with COPERT",
-    "version": "latest-udr2copert",
+    "version": "1.0.0",
     "status":"draft",
     "dockerImage":"registry.gitlab.com/inlecom/lead/models/udr-2-copert:latest",
     "url": "https://gitlab.com/inlecom/lead/models/udr-2-copert",
     "modelData":  [
         {
             "name": "UDR output",
-            "variableName": "odr_output",
+            "variableName": "udr_output",
             "description": "The path of the UDR output file.",
             "isOutput": false,
             "isOutputDir": false,
             "isOptional": false,
             "inputType": "CLI",
-            "chartType": "NONE",
             "modelDataType": {
                 "name": "file",
                 "description": "",
@@ -36,8 +35,8 @@
             "variableName": "vehicles_json",
             "description": "JSON describing vehicles.",
             "isOutput": false,
+            "isOutputDir": false,
             "isOptional": false,
-            "chartType": "NONE",
             "modelDataType": {
                 "name": "file",
                 "description": "",
@@ -52,8 +51,8 @@
             "variableName": "climate_json",
             "description": "JSON describing climate.",
             "isOutput": false,
+            "isOutputDir": false,
             "isOptional": false,
-            "chartType": "NONE",
             "modelDataType": {
                 "name": "file",
                 "description": "",
@@ -68,8 +67,8 @@
             "variableName": "year",
             "description": "Year to be used for Copert input",
             "isOutput": false,
+            "isOutputDir": false,
             "isOptional": false,
-            "chartType": "NONE",
             "modelDataType": {
                 "name": "number",
                 "description": "number",
@@ -87,7 +86,6 @@
             "isOutputDir": true,
             "isOptional": false,
             "inputType": "CLI",
-            "chartType": "NONE",
             "modelDataType": {
                 "name": "string",
                 "description": "",
