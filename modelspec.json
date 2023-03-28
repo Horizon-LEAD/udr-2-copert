@@ -14,6 +14,7 @@
             "isOutputDir": false,
             "isOptional": false,
             "inputType": "CLI",
+            "chartType": "NONE",
             "modelDataType": {
                 "name": "file",
                 "description": "",
@@ -37,6 +38,8 @@
             "isOutput": false,
             "isOutputDir": false,
             "isOptional": false,
+            "inputType": "CLI",
+            "chartType": "NONE",
             "modelDataType": {
                 "name": "file",
                 "description": "",
@@ -53,6 +56,8 @@
             "isOutput": false,
             "isOutputDir": false,
             "isOptional": false,
+            "inputType": "CLI",
+            "chartType": "NONE",
             "modelDataType": {
                 "name": "file",
                 "description": "",
@@ -69,6 +74,8 @@
             "isOutput": false,
             "isOutputDir": false,
             "isOptional": false,
+            "inputType": "CLI",
+            "chartType": "NONE",
             "modelDataType": {
                 "name": "number",
                 "description": "number",
@@ -86,6 +93,7 @@
             "isOutputDir": true,
             "isOptional": false,
             "inputType": "CLI",
+            "chartType": "NONE",
             "modelDataType": {
                 "name": "string",
                 "description": "",
