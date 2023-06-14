@@ -22,28 +22,44 @@ docker build -t udr-2-copert:latest .
 The executable's help message provides information on the parameters that are needed.
 ```
 $ udr-2-copert -h
-usage: udr-2-evco2 [-h] udr_output vehicle_type_flag out_dir
+usage: udr2copert [-h] [-v] udr_output Vehicle_Json_IN Climate_Json_IN year OUTDIR
 
-UDR-2-COPERT
-
-Translates the data retrieved from the UDR model into the format accepted by the COPERT model.
+UDR-to-COPERT Interface
 
 positional arguments:
-  udr_output         The path of the UDR output (xlxs)
-  Vehicle_Json_IN    The JSON file describing the vehicles
-  Climate_Json_IN    The JSON file describing the climate
-  Year               Year input
-  out_dir            The output directory
+  udr_output       The Json output file from Echelon as input to the connector
+  Vehicle_Json_IN  Vehicle json same as Copert v2 - exclude stock, mean_activity
+  Climate_Json_IN  Climate json same as Copert v2
+  year             Set the year
+  OUTDIR           The output directory
 
-options:
-  -h, --help         show this help message and exit
+optional arguments:
+  -h, --help       show this help message and exit
+  -v, --verbosity  Increase output verbosity (default: 0)
 ```
 
 ### Examples
+
+```
+python -m src.udr2copert \
+  ./sample-data/input/output.xlsx \
+  ./sample-data/input/vehicles.json \
+  ./sample-data/input/climate.json \
+  2023 \
+  ./sample-data/output/
+
+udr-2-copert \
+  ./sample-data/input/output.xlsx \
+  ./sample-data/input/vehicles.json \
+  ./sample-data/input/climate.json \
+  2023 \
+  ./sample-data/output/
+```
+
 ```
 docker run --rm \
-    -v $PWD/sample-data:/data \
-    registry.gitlab.com/inlecom/lead/models/udr-2-copert:latest \
+    -v ./sample-data:/data \
+    udr-2-copert:latest \
     /data/input/udr_output.xlsx \
     /data/input/vehicles.json \
     /data/input/climate.json \
