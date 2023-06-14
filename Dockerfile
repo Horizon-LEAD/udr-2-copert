@@ -13,4 +13,4 @@ RUN pip install --upgrade pip && \
 COPY src /srv/app/src
 RUN pip install --no-cache-dir /srv/app/
 
-ENTRYPOINT [ "udr2copert" ]
+ENTRYPOINT [ "udr-2-copert" ]
