@@ -1,15 +1,16 @@
-"""UDR-to-COPERT Interface
+"""UDR-2-COPERT retrieves the output of UDR and with further input generates an XLSX file that can
+be provided as input to the COPERT model.
 """
-
 from sys import argv
 from os.path import isdir, isfile
-import json
-from time import time
 from json import load
-import pandas as pd
-from udr2copert.ctrl import init_xlsx
 from argparse import (ArgumentParser, RawTextHelpFormatter,
                       ArgumentDefaultsHelpFormatter, ArgumentTypeError)
+
+import pandas as pd
+
+from .ctrl import init_xlsx
+
 
 EPILOG="""
 """
@@ -63,9 +64,6 @@ def main():
 
     args = parser.parse_args(argv[1:])
 
-    cmdargs = "".join(["\t" + item + "\n" for item in argv])[:-1]
-   
-    tick = time()
     params_cli = {}
 
     df_udr = pd.read_excel(args.udr_output)
@@ -74,8 +72,8 @@ def main():
 
     # input setup from vehicles
     vehicles = {}
-    with open(args.Vehicle_Json_IN, encoding='utf-8') as f:
-        vehicles = json.load(f)
+    with open(args.Vehicle_Json_IN, encoding='utf-8') as fveh:
+        vehicles = load(fveh)
 
     # check length of input parameters matches
     try:
@@ -84,20 +82,22 @@ def main():
     except AssertionError as exc:
         # logger.error('lens: %s', len(vehicles))
         raise AssertionError from exc
-    
+
     # enrich vehicles with stock and mean activity
     vehicles['STOCK'] = stock
     vehicles['MEAN_ACTIVITY'] = act
     params_cli['vehicles'] = vehicles
 
     # input setup from vehicles
-    with open(args.Climate_Json_IN) as fpv:
+    with open(args.Climate_Json_IN, encoding='utf-8') as fpv:
         params_cli['climate'] = load(fpv)
 
     params_cli['year'] = args.year
 
     # create the output
     filepath = init_xlsx(params_cli, path=args.OUTDIR)
+    print(f"input file created successfully: {filepath}")
+
 
 if __name__ == '__main__':
     main()

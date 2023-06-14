@@ -4,7 +4,6 @@ Contains functionality regarding...
 """
 
 from os.path import join
-from logging import getLogger
 
 from xlsxwriter import Workbook
 
@@ -20,8 +19,6 @@ CLIMATE_HEADER = ["Month"]
 MONTHS = ["January", "February", "March", "April", "May", "June",
           "July", "August", "September", "October", "November", "December"]
 INPUT_FILENAME = "copert_input.xlsx"
-
-logger = getLogger("udr2copert.ctrl")
 
 
 def init_xlsx(params, path='/tmp'):
@@ -87,7 +84,5 @@ def init_xlsx(params, path='/tmp'):
             wsh.write(i+1, 1, value, fmt)
 
     wbk.close()
-
-    logger.info("input file created successfully: %s", filepath)
 
     return filepath
