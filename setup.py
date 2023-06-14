@@ -41,7 +41,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'udr2copert=udr2copert.__main__:main'
+            'udr-2-copert=udr2copert.__main__:main'
         ],
     },
     project_urls={
